@@ -1,0 +1,23 @@
+plugins {
+    id 'java'
+}
+
+group 'bzh.test.clevertec'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    implementation 'org.slf4j:slf4j-api:2.0.6'
+    implementation 'ch.qos.logback:logback-classic:1.4.5'
+// https://mvnrepository.com/artifact/junit/junit
+    testImplementation 'junit:junit:4.13.2'
+
+}
+
+test {
+   // useJUnitPlatform()
+}
