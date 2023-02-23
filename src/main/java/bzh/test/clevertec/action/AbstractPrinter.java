@@ -4,11 +4,11 @@ import bzh.test.clevertec.enities.Check;
 
 import java.io.IOException;
 import java.text.NumberFormat;
-import java.util.Locale;
+
 
 
 abstract public class AbstractPrinter {
-    NumberFormat numberFormat = NumberFormat.getInstance();
+    private static NumberFormat numberFormat = NumberFormat.getInstance();
     protected Check check;
     private OutDataInterface out;
 
@@ -27,7 +27,7 @@ abstract public class AbstractPrinter {
         out.out(getOutputString());
     }
 
-    public String convertMoneyToString(long val) {
+    public static String convertMoneyToString(long val) {
         return numberFormat.format(val / 100.00);
     }
 }

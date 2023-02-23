@@ -17,10 +17,20 @@ import java.util.*;
 public class ServiceClass {
     private static final Logger logger = LoggerFactory.getLogger(ServiceClass.class);
     private static final String CARD_INDICATION = "card";
-    private final ProductDaoInterface productDao = new MemoryProduct();
-    private final CardDaoInterface cardDao = new MemoryCard();
+    private final ProductDaoInterface productDao;
+    private final CardDaoInterface cardDao;
     private final List<Map.Entry<Product, Integer>> products = new ArrayList<>();
     private Optional<DiscountCard> gotCard = Optional.empty();
+
+    public ServiceClass() {
+        productDao = new MemoryProduct();
+        cardDao = new MemoryCard();
+    }
+
+    public ServiceClass(ProductDaoInterface productDao, CardDaoInterface cardDao) {
+        this.productDao = productDao;
+        this.cardDao = cardDao;
+    }
 
     public Check getCheck(String[] notes) throws DataException {
         convert(notes);
