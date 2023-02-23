@@ -1,0 +1,15 @@
+
+CASH RECEIPT
+SHOP 1 
+ 5, Central street
+23.02.2023, 12:42
+
+Milk
+   2,08 * 1 = 2,08
+Discount:  0,1
+Butter
+   1,85 * 5 = 9,25
+Discount:  0,46
+
+Total discount: 0,56
+Total amount for payment:   10,77
