@@ -67,7 +67,7 @@ public class ServiceClass {
         try {
             int id = Integer.parseInt(note[0]);
             int quantity = Integer.parseInt(note[1]);
-            Optional<Product> product = productDao.getProductById(id);
+            Optional<Product> product = productDao.getById(id);
             return Map.entry(product.orElseThrow(), quantity);
         } catch (NumberFormatException ex) {
             logger.error("Illegal input data {}", Arrays.toString(note));

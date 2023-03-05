@@ -1,6 +1,8 @@
 package bzh.test.clevertec.enities;
 
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Product  {
     private long id;
@@ -61,5 +63,9 @@ public class Product  {
     @Override
     public int hashCode() {
         return Objects.hash(id, name, price, discountType);
+    }
+
+    private boolean checkName(String name){
+        return name.matches("\\S+");
     }
 }
