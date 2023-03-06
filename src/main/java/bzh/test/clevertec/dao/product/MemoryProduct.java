@@ -5,6 +5,7 @@ import bzh.test.clevertec.enities.Product;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
@@ -13,13 +14,14 @@ public class MemoryProduct implements ProductDaoInterface {
     private Map<Long, String[]> products;
     private long counter=6;
     public MemoryProduct() {
-        products = Map.ofEntries(Map.entry(1l, new String[]{"Bread", "115", "0"}),
+        products = new HashMap<>();
+                products.putAll(Map.ofEntries(Map.entry(1l, new String[]{"Bread", "115", "0"}),
                 Map.entry(2l, new String[]{"Butter", "185", "0"}),
                 Map.entry(3l, new String[]{"Milk", "208", "0"}),
                 Map.entry(4l, new String[]{"Ice cream", "150", "1"}),
                 Map.entry(5l, new String[]{"Chocolate", "210", "1"}),
                 Map.entry(6l, new String[]{"Yogurt", "85", "1"})
-        );
+        ));
     }
 
     @Override

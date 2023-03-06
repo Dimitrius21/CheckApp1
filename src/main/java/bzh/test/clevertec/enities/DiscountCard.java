@@ -3,18 +3,18 @@ package bzh.test.clevertec.enities;
 import java.util.Objects;
 
 public class DiscountCard {
-    private int number;
+    private long number;
     private int discount;
 
     public DiscountCard() {
     }
 
-    public DiscountCard(int number, int discount) {
+    public DiscountCard(long number, int discount) {
         this.number = number;
         this.discount = discount;
     }
 
-    public int getNumber() {
+    public long getNumber() {
         return number;
     }
 
@@ -22,7 +22,7 @@ public class DiscountCard {
         return discount;
     }
 
-    public void setNumber(int number) {
+    public void setNumber(long number) {
         this.number = number;
     }
 

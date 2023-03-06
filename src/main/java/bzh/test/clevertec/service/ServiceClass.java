@@ -56,7 +56,7 @@ public class ServiceClass {
                 } catch (NumberFormatException ex) {
                     throw new DataException("Illegal input data");
                 }
-                gotCard = cardDao.getDiscountCard(cardNumber);
+                gotCard = cardDao.getById(cardNumber);
             } else {
                 products.add(getProductNoteById(field));
             }

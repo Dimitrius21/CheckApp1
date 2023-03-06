@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Proxy;
 import java.util.Properties;
 
 public class CheckRunner {
@@ -59,3 +60,11 @@ public class CheckRunner {
     }
 }
 
+/*
+    MemoryDao dao = new MemoryDao();
+    //Cacheable cacheLfu = new CacheLfu(2);
+    Cacheable cache = CacheFabric.getCacheInstance();
+    CacheHandler handler = new CacheHandler(dao, cache);
+    Dao proxyDao = (Dao) Proxy.newProxyInstance(Dao.class.getClassLoader(), new Class[]{Dao.class}, handler);
+    Object s = proxyDao.getById(3);
+        System.out.println(s);*/
