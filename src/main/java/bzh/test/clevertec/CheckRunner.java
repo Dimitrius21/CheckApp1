@@ -4,6 +4,11 @@ import bzh.test.clevertec.action.AbstractPrinter;
 import bzh.test.clevertec.action.OutToConsole;
 import bzh.test.clevertec.action.OutToFile;
 import bzh.test.clevertec.action.PrintCheck;
+import bzh.test.clevertec.cache.CacheHandler;
+import bzh.test.clevertec.dao.card.CardDaoInterface;
+import bzh.test.clevertec.dao.card.MemoryCard;
+import bzh.test.clevertec.dao.product.MemoryProduct;
+import bzh.test.clevertec.dao.product.ProductDaoInterface;
 import bzh.test.clevertec.enities.Check;
 import bzh.test.clevertec.exceptions.DataException;
 import bzh.test.clevertec.service.ServiceClass;
@@ -13,7 +18,6 @@ import org.slf4j.LoggerFactory;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.Proxy;
 import java.util.Properties;
 
 public class CheckRunner {
@@ -40,8 +44,11 @@ public class CheckRunner {
         try {
             if (isPropertiesLoaded) {
                 String[] data = Helpers.testInputData(args);
-                Check check = new ServiceClass().getCheck(data);
-
+                ProductDaoInterface productDao = new MemoryProduct();
+                productDao = (ProductDaoInterface) CacheHandler.checkCaching(productDao, ProductDaoInterface.class);
+                CardDaoInterface cardDao = new MemoryCard();
+                cardDao = (CardDaoInterface) CacheHandler.checkCaching(cardDao, CardDaoInterface.class);
+                Check check = new ServiceClass(productDao, cardDao).getCheck(data);
                 AbstractPrinter printCheck = new PrintCheck(check, new OutToConsole());
                 printCheck.printString();
 
@@ -58,13 +65,7 @@ public class CheckRunner {
     public static String getAppProperty(String property) {
         return prop.getProperty(property);
     }
+
+
 }
 
-/*
-    MemoryDao dao = new MemoryDao();
-    //Cacheable cacheLfu = new CacheLfu(2);
-    Cacheable cache = CacheFabric.getCacheInstance();
-    CacheHandler handler = new CacheHandler(dao, cache);
-    Dao proxyDao = (Dao) Proxy.newProxyInstance(Dao.class.getClassLoader(), new Class[]{Dao.class}, handler);
-    Object s = proxyDao.getById(3);
-        System.out.println(s);*/

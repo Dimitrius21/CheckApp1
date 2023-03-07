@@ -1,7 +1,7 @@
 package bzh.test.clevertec.dao.card;
 
+import bzh.test.clevertec.cache.CachedEntity;
 import bzh.test.clevertec.enities.DiscountCard;
-import bzh.test.clevertec.enities.Product;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -11,6 +11,7 @@ import java.util.Optional;
 
 import static java.util.Map.entry;
 
+@CachedEntity
 public class MemoryCard implements CardDaoInterface {
     private static final Logger logger = LoggerFactory.getLogger(MemoryCard.class);
     private Map<Long, Integer> discountCards;
