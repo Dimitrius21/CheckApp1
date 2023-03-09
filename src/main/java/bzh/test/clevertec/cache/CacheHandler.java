@@ -6,11 +6,19 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
-
+/**
+ * Класс реализует механизм проксирования для объектов доступа к данным в хранилище сущностей в случае их кэширования -
+ * классы аннотированые {@link CachedEntity}
+ */
 public class CacheHandler implements InvocationHandler {
     private SimpleDao obj;
     private Cacheable cache;
 
+    /**
+     * Конструктор
+     * @param obj - кэшируемый объект
+     * @param cache - объект реализующий сам кэш
+     */
     public CacheHandler(SimpleDao obj, Cacheable cache) {
         this.obj = obj;
         this.cache = cache;
@@ -56,6 +64,14 @@ public class CacheHandler implements InvocationHandler {
         return res;
     }
 
+    /**
+     * Метод проверяет наличие аннотации {@link CachedEntity} над объектом Dao и производит проксирование методов определенных
+     * в {@link SimpleDao} для кэширования доступа к данным
+     * @param dao - объект доступа к данным, который может быть кэширован
+     * @param interfaceClass - класс определяющий непосредственный интрефейс объекта доступа к данным в хранилище сущностей     *
+     * @return - в зависимости от наличия аннотации над классом или входной объект
+     * или его объект-обертку обеспечивающим кэширование
+     */
     public static SimpleDao checkCaching(SimpleDao dao, Class<? extends SimpleDao> interfaceClass){
         if (dao.getClass().getDeclaredAnnotation(CachedEntity.class)!=null){
             Cacheable cache = CacheFabric.getCacheInstance();

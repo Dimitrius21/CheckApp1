@@ -9,6 +9,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
+/**
+ * Класс эмулирующий хранилище в оперативной памяти для сущности Product
+ */
 @CachedEntity
 public class MemoryProduct implements ProductDaoInterface {
     private static final Logger logger = LoggerFactory.getLogger(MemoryProduct.class);
@@ -25,6 +28,11 @@ public class MemoryProduct implements ProductDaoInterface {
         ));
     }
 
+    /**
+     * Метод получения объекта Product по его id
+     * @param id - первичный ключ для поиска записи
+     * @return - Объект Optional с найденным значением или empty
+     */
     @Override
     public Optional<Product> getById(long id){
         String[] product = products.get(id);
@@ -35,6 +43,11 @@ public class MemoryProduct implements ProductDaoInterface {
             return Optional.of(new Product(id, product[0], Integer.parseInt(product[1]), Integer.parseInt(product[2])));
     }
 
+    /**
+     * Метод сохранения объекта Product в хранимлище
+     * @param product - сохраняемый объект Product
+     * @return - сохраненный объект с присвоенным первичным ключом хранилища
+     */
     @Override
     public Product create(Product product) {
         String[] note = {product.getName(), Integer.toString(product.getPrice()), Integer.toString(product.getDiscountType())};
@@ -44,12 +57,20 @@ public class MemoryProduct implements ProductDaoInterface {
         return product;
     }
 
+    /**
+     * Метод обновления объекта Product в хранимлище
+     * @param product - обновляемый объект Product
+     */
     @Override
     public void update(Product product) {
         String[] note = {product.getName(), Integer.toString(product.getPrice()), Integer.toString(product.getDiscountType())};
         products.put(product.getId(), note);
     }
 
+    /**
+     * Метод удаления объекта Product в хранимлище
+     * @param id - первичный ключ удаляемого объекта
+     */
     @Override
     public void deleteById(long id) {
         products.remove(id);

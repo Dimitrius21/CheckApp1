@@ -1,8 +1,10 @@
 package bzh.test.clevertec.enities;
 
+/**
+ * Абстрактный класс описывающий сущность - Позиция(купленный товар) Чека к которой может быть применена скидка
+ */
 public abstract class ItemWithDiscount extends Item {
     Item item;
-
 
     public ItemWithDiscount(Item item) {
         super();

@@ -13,6 +13,9 @@ import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Класс реализует фабрику, создающую объект кэша исходя из параметров записанных в application.yml
+ */
 public enum CacheFabric {
     LFU(CacheLfu::new),
     LRU(CacheLru::new);
@@ -24,6 +27,10 @@ public enum CacheFabric {
         this.cacheProduce = create;
     }
 
+    /**
+     * Метод читает параметы записанные в application.yml и создает объект кэша
+     * @return объект кэша, реализующего интерфейс Cacheable
+     */
     public static Cacheable getCacheInstance() {
         Map<String, String> prop = new HashMap<>();
         try {

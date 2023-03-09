@@ -1,9 +1,6 @@
 package bzh.test.clevertec;
 
-import bzh.test.clevertec.action.AbstractPrinter;
-import bzh.test.clevertec.action.OutToConsole;
-import bzh.test.clevertec.action.OutToFile;
-import bzh.test.clevertec.action.PrintCheck;
+import bzh.test.clevertec.action.*;
 import bzh.test.clevertec.cache.CacheHandler;
 import bzh.test.clevertec.dao.card.CardDaoInterface;
 import bzh.test.clevertec.dao.card.MemoryCard;
@@ -23,7 +20,7 @@ import java.util.Properties;
 public class CheckRunner {
     private static final Logger logger = LoggerFactory.getLogger(CheckRunner.class);
     public static final String MAIN_PROPERTIES_FILE = "application.properties";
-    public static final String FILE_NAME_TO_WRITE = "check.txt";
+    public static final String FILE_NAME_TO_WRITE = "check";
     private static Properties prop = new Properties();
     private static boolean isPropertiesLoaded = false;
 
@@ -52,8 +49,14 @@ public class CheckRunner {
                 AbstractPrinter printCheck = new PrintCheck(check, new OutToConsole());
                 printCheck.printString();
 
-                printCheck.setOutSource(new OutToFile(FILE_NAME_TO_WRITE));
+                printCheck.setOutSource(new OutToFile(FILE_NAME_TO_WRITE+".txt"));
                 printCheck.printString();
+
+                printCheck = new PrintCheckToXml(check, new OutToConsole());
+                printCheck.printString();
+                printCheck.setOutSource(new OutToFile(FILE_NAME_TO_WRITE+".xml"));
+                printCheck.printString();
+
             }else {
                 throw new DataException("Init property file hasn't loaded");
             }

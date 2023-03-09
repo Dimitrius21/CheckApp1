@@ -5,6 +5,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Класс описывающий сущность Чек
+ */
 public class Check {
     private String name = "CASH RECEIPT";
     private String shop = "SHOP";

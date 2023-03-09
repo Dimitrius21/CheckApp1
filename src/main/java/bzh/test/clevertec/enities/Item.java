@@ -1,8 +1,9 @@
 package bzh.test.clevertec.enities;
 
-import java.util.ArrayList;
-import java.util.List;
 
+/**
+ * Класс описывающий сущность  - Позиция(купленный товар) Чека -
+ */
 public class Item implements ItemInterface {
 
     private Product product;
@@ -38,6 +39,9 @@ public class Item implements ItemInterface {
         return product.getDiscountType();
     }
 
+    /**
+     * Внутренний класс реализующий Билдер для построения данной сущности
+     */
     public static class ItemBuilder{
         private Product product;
         private int quantity;

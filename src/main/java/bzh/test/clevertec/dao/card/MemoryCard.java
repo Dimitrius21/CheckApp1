@@ -11,6 +11,9 @@ import java.util.Optional;
 
 import static java.util.Map.entry;
 
+/**
+ *  Класс эмулирующий хранилище в оперативной памяти для сущности DiscountCard
+ */
 @CachedEntity
 public class MemoryCard implements CardDaoInterface {
     private static final Logger logger = LoggerFactory.getLogger(MemoryCard.class);
@@ -25,7 +28,11 @@ public class MemoryCard implements CardDaoInterface {
                         entry(1236L, 5),
                         entry(1237L, 3)));
     }
-
+    /**
+     * Метод получения объекта DiscountCard по его номеру
+     * @param number - номер DiscountCard для поиска записи
+     * @return - Объект Optional с найденным значением или empty
+     */
     @Override
     public Optional<DiscountCard> getById(long number) {
         Integer discount = discountCards.get(number);
@@ -35,7 +42,11 @@ public class MemoryCard implements CardDaoInterface {
         }
         return Optional.of(new DiscountCard((int) number, discount));
     }
-
+    /**
+     * Метод сохранения объекта DiscountCard в хранимлище
+     * @param card - сохраняемый объект DiscountCard
+     * @return - сохраненный объект с присвоенным номером
+     */
     @Override
     public DiscountCard create(DiscountCard card) {
         int discount = card.getDiscount();
@@ -44,13 +55,19 @@ public class MemoryCard implements CardDaoInterface {
         card.setNumber(number);
         return card;
     }
-
+    /**
+     * Метод обновления объекта DiscountCard в хранимлище
+     * @param card - обновляемый объект DiscountCard
+     */
     @Override
     public void update(DiscountCard card) {
         int discount = card.getDiscount();
         discountCards.put(card.getNumber(), discount);
     }
-
+    /**
+     * Метод удаления объекта DiscountCard в хранимлище
+     * @param id - номер удаляемого объекта DiscountCard
+     */
     @Override
     public void deleteById(long id) {
         discountCards.remove(id);

@@ -2,6 +2,9 @@ package bzh.test.clevertec.enities;
 
 import java.util.Objects;
 
+/**
+ * Класс описывающий сущность Дисконтная карта
+ */
 public class DiscountCard {
     private long number;
     private int discount;

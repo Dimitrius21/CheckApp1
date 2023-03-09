@@ -1,5 +1,9 @@
 package bzh.test.clevertec.enities;
 
+/**
+ *  Класс описывающий сущность - Позиция(купленный товар) Чека к которой применяется скидка за количество приобретенного
+ *  товара
+ */
 public class ItemWithQuantityDiscount extends ItemWithDiscount {
     private static final int DISCOUNT_SIZE = 10;
     private static final int DISCOUNT_QUANTITY = 5;

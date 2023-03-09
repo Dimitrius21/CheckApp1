@@ -1,5 +1,9 @@
 package bzh.test.clevertec.enities;
 
+/**
+ * Класс описывающий сущность - Позиция(купленный товар) Чека к которой применяется скидка при наличии дисконтной карты
+ * Скидка по карте не применяется также при наличии какой либо другой скидки
+ */
 public class ItemWitDiscountCard extends ItemWithDiscount {
     DiscountCard card;
 

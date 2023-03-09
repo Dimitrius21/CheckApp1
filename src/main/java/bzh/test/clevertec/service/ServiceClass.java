@@ -14,6 +14,9 @@ import org.slf4j.LoggerFactory;
 
 import java.util.*;
 
+/**
+ * Класс формирующий объект класса Check по полученнным входным параметрам
+ */
 public class ServiceClass {
     private static final Logger logger = LoggerFactory.getLogger(ServiceClass.class);
     private static final String CARD_INDICATION = "card";
@@ -32,6 +35,12 @@ public class ServiceClass {
         this.cardDao = cardDao;
     }
 
+    /**
+     * формирующий объект класса Check
+     * @param notes - входные данные ввиде массива строк
+     * @return сформированный объект класса Check
+     * @throws DataException - в случае ошибок в процессе обработки данных
+     */
     public Check getCheck(String[] notes) throws DataException {
         convert(notes);
         Check check = new Check();
@@ -46,7 +55,12 @@ public class ServiceClass {
         return check;
     }
 
-    public void convert(String[] args) throws DataException {
+    /**
+     * Формирует список из записей с описанием товара (Product) его количеством, а также объект DiscountCard в случае наличия
+     * @param args - список входных параметров в текстовом представлении
+     * @throws DataException - в случае некорректгых входных данных
+     */
+    private void convert(String[] args) throws DataException {
         for (String st : args) {
             String[] field = st.split("-");
             if (CARD_INDICATION.equals(field[0])) {
@@ -63,6 +77,13 @@ public class ServiceClass {
         }
     }
 
+    /**
+     * Метод преобразует входное строковое представление параметров одной позиции товара в запись с описаниеем товара -
+     * объект Product и целочисленным представлением количества данного товара
+     * @param note - строковое представление параметров одной позиции товара в чеке
+     * @return - запись Map.Entry с объектом Product и количеством данного товара
+     * @throws DataException - в случае неверного задания входных параметров
+     */
     public Map.Entry<Product, Integer> getProductNoteById(String[] note) throws DataException {
         try {
             int id = Integer.parseInt(note[0]);

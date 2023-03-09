@@ -8,11 +8,20 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-
+/**
+ * Вспомогательный класс для проверки наличия входных параметров и чтения их из файла, в случае указания во входных
+ * параметрах соответствующего ключа
+ */
 public class Helpers {
     private static String KEY = "-f";
     private static final Logger logger = LoggerFactory.getLogger(Helpers.class);
 
+    /**
+     * Метод проверяет наличие входных данных во входной строке запуска программы или в файле
+     * @param args - входные параметры при запуске программы
+     * @return - набор параметров для формирования Check
+     * @throws DataException - если входные данные с набором параметров отсутствуют
+     */
     public static String[] testInputData(String[] args) throws DataException {
         if (args.length == 0) {
             logger.error("Data is absent");
@@ -23,6 +32,13 @@ public class Helpers {
             return readDataFromFile(fileName);
         } else return args;
     }
+
+    /**
+     * Метод производит чтение входных данных из файла
+     * @param filename - файл где граняться входные данные
+     * @return - входные данные порчитанные из файла
+     * @throws DataException - в случае ошибки чтения файла или отсуттвия данных в файле
+     */
 
     public static String[] readDataFromFile(String filename) throws DataException {
         try (BufferedReader rd = new BufferedReader(new FileReader(filename))) {

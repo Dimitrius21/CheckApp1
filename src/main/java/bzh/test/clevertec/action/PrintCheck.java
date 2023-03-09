@@ -8,6 +8,10 @@ import org.slf4j.LoggerFactory;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 
+/**
+ * Класс реализующий вывод сформированного представления объекта Check в указанный ресурс
+ * Наследник клааса AbstractPrinter, переопределяет метод getOutputString
+ */
 public class PrintCheck extends AbstractPrinter {
     private static final Logger logger = LoggerFactory.getLogger(PrintCheck.class);
 
@@ -15,6 +19,10 @@ public class PrintCheck extends AbstractPrinter {
         super(check, out);
     }
 
+    /**
+     * Метод формирующий структуру представления/отображения объекта Check
+     * @return сформированную строку представления
+     */
     @Override
     public String getOutputString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT);
