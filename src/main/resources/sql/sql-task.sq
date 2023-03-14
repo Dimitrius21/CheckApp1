@@ -64,7 +64,7 @@ INSERT INTO Orders (customerId, quantity) VALUES (1, 11), (2, 22), (3, 33), (4, 
 DROP TABLE IF EXISTS Orders;
 DROP TABLE IF EXISTS Customers;
 
-— Написать свой кастомный запрос ( rus + sql)
+-- Написать свой кастомный запрос ( rus + sql)
 -- Подсчитать количество билетов и их сумму,на места по всем тарифам, кроме Экономный,
 -- проданных на рейсы что были осуществлены за последние 30 дней,
 SELECT sum(amount), count(*) FROM ticket_flights as tk
