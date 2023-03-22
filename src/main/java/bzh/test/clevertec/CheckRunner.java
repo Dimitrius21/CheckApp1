@@ -13,6 +13,7 @@ import bzh.test.clevertec.utils.Helpers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -46,6 +47,7 @@ public class CheckRunner {
                 CardDaoInterface cardDao = new MemoryCard();
                 cardDao = (CardDaoInterface) CacheHandler.checkCaching(cardDao, CardDaoInterface.class);
                 Check check = new ServiceClass(productDao, cardDao).getCheck(data);
+
                 AbstractPrinter printCheck = new PrintCheck(check, new OutToConsole());
                 printCheck.printString();
 

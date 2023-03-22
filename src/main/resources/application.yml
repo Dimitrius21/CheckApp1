@@ -1,4 +1,4 @@
 cache:
   type : lfu
-  size : 2
+  size : 5
 
