@@ -12,6 +12,7 @@ import bzh.test.clevertec.service.ServiceClass;
 import bzh.test.clevertec.utils.Helpers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -48,7 +49,7 @@ public class CheckRunner {
                 cardDao = (CardDaoInterface) CacheHandler.checkCaching(cardDao, CardDaoInterface.class);
                 Check check = new ServiceClass(productDao, cardDao).getCheck(data);
 
-                AbstractPrinter printCheck = new PrintCheck(check, new OutToConsole());
+/*                AbstractPrinter printCheck = new PrintCheck(check, new OutToConsole());
                 printCheck.printString();
 
                 printCheck.setOutSource(new OutToFile(FILE_NAME_TO_WRITE+".txt"));
@@ -57,9 +58,11 @@ public class CheckRunner {
                 printCheck = new PrintCheckToXml(check, new OutToConsole());
                 printCheck.printString();
                 printCheck.setOutSource(new OutToFile(FILE_NAME_TO_WRITE+".xml"));
-                printCheck.printString();
+                printCheck.printString();*/
 
-            }else {
+                new PrintToPdf("Clevertec.pdf", new FileOutputStream(FILE_NAME_TO_WRITE + ".pdf")).createPdf(check);
+
+            } else {
                 throw new DataException("Init property file hasn't loaded");
             }
         } catch (Exception ex) {
