@@ -5,15 +5,15 @@ import java.util.Objects;
 /**
  * Класс описывающий сущность Продукт
  */
-public class Product  {
+public class Product {
     private long id;
     private String name;
     private int price;
     private int discountType;
 
-    public Product(long id, String name, int price, int discount) throws IllegalArgumentException{
+    public Product(long id, String name, int price, int discount) throws IllegalArgumentException {
         this.id = id;
-        this.name = checkdata(name);
+        this.name = checkData(name);
         this.price = price;
         this.discountType = discount;
     }
@@ -34,7 +34,7 @@ public class Product  {
     }
 
     public void setName(String name) throws IllegalArgumentException {
-        this.name = checkdata(name);
+        this.name = checkData(name);
     }
 
     public int getPrice() {
@@ -66,8 +66,11 @@ public class Product  {
         return Objects.hash(id, name, price, discountType);
     }
 
-    private String checkdata(String name) throws IllegalArgumentException{
-        if (name.matches("\\S+") ) return name;
-        else throw new IllegalArgumentException("Field 'name' is not correct");
+    private String checkData(String name) throws IllegalArgumentException {
+        if (name.isEmpty() || name.isBlank() || name == null) {
+            throw new IllegalArgumentException("Field 'name' is not correct");
+        } else {
+            return name;
+        }
     }
 }
